@@ -1,4 +1,4 @@
-<%@ page import="com.honeywell.bms.common.constants.BMSApplicationConstants"%>
+<%@ page import="com.honeywell.bms.common.constants.ApplicationConstants"%>
 
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/struts-logic-el.tld" prefix="logic-el" %>
@@ -10,7 +10,7 @@
 
 <html:html locale="true" >
 <html:base />
-<title>Business Management System - Welcome Page</title>
+<title>{pageTitle}</title>
 
 <!-- STYLE SETTINGS -->
 </head>
@@ -34,10 +34,10 @@ var vProductTypeFldAr = new Array();
 var vProductTypeNameFldAr = new Array();
 var vDbTypeFldAr = new Array();
 var vMediaTypeFldAr = new Array();
-var vAssociatedAr = new Array();//CR 166 UAT 3 Build 6
-var vAssociatedDBValueAr = new Array();//CR 166 UAT 3 Build 6 
-var vIsChildAr = new Array();//CR 166 UAT 3 Build 6
-var vMediaFormatFldAr = new Array();//CR 150 UAT 3 BUild 6
+var vAssociatedAr = new Array();
+var vAssociatedDBValueAr = new Array();
+var vIsChildAr = new Array();
+var vMediaFormatFldAr = new Array();
 var vDiscPercentFldAr = new Array();
 var vDefShipQtyFldAr = new Array();
 var vDiscAmtFldAr = new Array();
@@ -59,8 +59,8 @@ var vDefaultLoadFormatId = new Array();
 var vLoadableFormatFldAr = new Array();
 var vRowNumberAr = new Array();
 
-var vBillStatusSeqNew = '<%=BMSApplicationConstants.SUB_BILL_STATUS_NEW%>';
-var vBillStatusSeqNoCharge = '<%=BMSApplicationConstants.SUB_BILL_STATUS_NOCHARGE%>';
+var vBillStatusSeqNew = '<%=ApplicationConstants.SUB_BILL_STATUS_NEW%>';
+var vBillStatusSeqNoCharge = '<%=ApplicationConstants.SUB_BILL_STATUS_NOCHARGE%>';
 
 var arMediaCatType = new Array();
 <c:forEach items="${subSubscriptionDetailsForm.mediatypesList}" var="mediaDet" >
@@ -139,10 +139,8 @@ function selectProductLine()
 		alert("Please select a product line.");
 		return;
 	}
-	// Pankaj start
 	checkForAddDeleteCopyGo();
-	// Pankaj end	
-		<%-- clear the subscription details filter --%>
+	<%-- clear the subscription details filter --%>
 	document.forms[0].searchDbProductId.value="";
 	document.forms[0].displayDbProductId.value="";
 	
@@ -166,9 +164,7 @@ function giveCredit(obj,detailSeq)
 	//var vSaveYesNo = getObject(arSaveYesNo[rowIdx-1]).value;
 	var vSaveYesNo = '<bean:write  name="subSubscriptionDetailsForm"  property="popUpSaveYesNo" />';
 	
-	//alert('/BMSWeb/subscription/subNonDBBillingCredit.do?reqSubSeq='
-	//			+vHidSubDetSeq.value+'&reqSubDetailSeq='+vSubReqSeq );
-	
+
 	window.open('/BMSWeb/subscription/subNonDBBillingCredit.do?reqSubSeq='+vSubReqSeq
 				+'&reqSubDetailSeq='+vHidSubDetSeq.value+"&yesNoFlag="+vSaveYesNo,'Give_Credit', 'width=650,height=700,left=20,top=50,resizable=no');	
 }
@@ -184,9 +180,7 @@ function resetFleetSubDetailsForm()
 
 function filterSubDetails()
 {
-	// Pankaj start
 	checkForAddDeleteCopyGo();
-	// Pankaj end
 	document.forms[0].detRequestType.value='<%=BMSApplicationConstants.SUB_DETAILS_FILTER%>';
 	document.forms[0].submit();
 }
@@ -278,7 +272,7 @@ function hideDesc(position){
 	    			vAssociatedAr.push('<c:out value="${associatedDB}"/>');
 	    		</script>
    			    </c:forEach>
-  <!-- CR 166 UAT 3 Build 6 end-->
+
 <!--table width="100%" border="0" class="breadcrumb" >
   <tr>
     <td height="9" ><bean:message key="subscription.common.header"/> :: <bean:message key="subscription.common.requirement" /> :: <%=session.getAttribute(BMSApplicationConstants.SUB_SESSION_OPMODE_VAR)%> Fleet-Based Requirements </td>  
