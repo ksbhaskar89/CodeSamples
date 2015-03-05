@@ -1,5 +1,5 @@
 
-// Init the angular app for including the authorization token while calling the rest service.
+// Init the angular app for including the authorization token while calling the oracle vrm rest service.
 
 angular.module('secureApp', ['ngRoute', 'ngCookies', 'secureApp.services'])
 	.config(
