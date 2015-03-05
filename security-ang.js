@@ -1,3 +1,6 @@
+
+// Init the angular app for including the authorization token while calling the rest service.
+
 angular.module('secureApp', ['ngRoute', 'ngCookies', 'secureApp.services'])
 	.config(
 		[ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
