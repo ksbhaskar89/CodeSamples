@@ -171,7 +171,7 @@ var services = angular.module('secureApp.services', ['ngResource']);
 
 services.factory('UserService', function($resource) {
 	
-	return $resource('rest/user/:action', {},
+	return $resource('apps/oracle/vrm/user/:action', {},
 			{
 				authenticate: {
 					method: 'POST',
@@ -180,9 +180,4 @@ services.factory('UserService', function($resource) {
 				},
 			}
 		);
-});
-
-services.factory('NewsService', function($resource) {
-	
-	return $resource('rest/news/:id', {id: '@id'});
 });
